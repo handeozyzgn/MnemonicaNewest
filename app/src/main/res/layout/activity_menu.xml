@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <ImageView
+        android:id="@+id/myImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_back"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <Button
         android:id="@+id/editAccount"
         android:layout_width="match_parent"
@@ -41,9 +49,9 @@
         android:id="@+id/findDistTime" />
 
     <Button
-        android:text="push notification "
+        android:text="send event"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:id="@+id/pushNotification" />
 
     <Button
