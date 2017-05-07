@@ -46,6 +46,9 @@ public class CreateAct extends AppCompatActivity {
     int month;
     int year;
     String dayStr;
+    String dayStr2;
+    String dayStr3;
+    String dayStr4;
     String monthStr;
     String yearStr;
     String hourStr;
@@ -53,9 +56,6 @@ public class CreateAct extends AppCompatActivity {
     String numOfAct;
     String activityID;
     String destination;
-    String dayStr2;
-    String dayStr3;
-    String dayStr4;
     private EditText attandanceLimitTxt;
     String attandanceLimitS;
     Spinner spinner;
@@ -66,6 +66,8 @@ public class CreateAct extends AppCompatActivity {
     int day2;
     int day3;
     int day4;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,6 +96,7 @@ public class CreateAct extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
 
+
         addActivity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -108,6 +111,7 @@ public class CreateAct extends AppCompatActivity {
                 day3 = day +14;
                 day4 = day +21;
 
+
                 if (TextUtils.isEmpty(actN)) {
                     Toast.makeText(getApplicationContext(), "Enter Title of Activity!", Toast.LENGTH_SHORT).show();
                     return;
@@ -119,6 +123,7 @@ public class CreateAct extends AppCompatActivity {
                 dayStr2 = String.valueOf(day2);
                 dayStr3 = String.valueOf(day3);
                 dayStr4 = String.valueOf(day4);
+
                 monthStr = String.valueOf(month);
                 yearStr = String.valueOf(year);
                 num++;
@@ -138,18 +143,11 @@ public class CreateAct extends AppCompatActivity {
                 addActivity.setVisibility(View.GONE);
                 backArrow.setVisibility(View.VISIBLE);
 
-                strtAlarm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(CreateAct.this, AddActToSchedule.class);
-                        startActivity(intent);
-                    }
-                });
 
                 myRef.child("Users").child(uid).child("Number of Activities").setValue(numberOfActivity);
-                //Adding location information of activity to database
+                        //Adding location information of activity to database
                 if(activityType.equals("Lesson")){
-                    DatabaseReference newRef2 =  myRef.child("Users").child(uid).child("Lessons").push();
+                    DatabaseReference newRef2 = myRef.child("Users").child(uid).child("Lessons").push();
                     newRef2.child("Activity Name").setValue(actN);
                     newRef2.child("Activity Hour").setValue(hourStr);
                     newRef2.child("Activity Minute").setValue(minuteStr);
@@ -162,46 +160,38 @@ public class CreateAct extends AppCompatActivity {
 
                     //2.Lesson Activity
                     DatabaseReference newRef12 = myRef.child("Users").child(uid).child("activities").push();
-                    newRef12.child("Activity Name").setValue(actN);
-                    newRef12.child("Activity Hour").setValue(hourStr);
-                    newRef12.child("Activity Minute").setValue(minuteStr);
-                    newRef12.child("Activity Day").setValue(dayStr2);
-                    newRef12.child("Activity Month").setValue(monthStr);
-                    newRef12.child("Activity Year").setValue(yearStr);
-                    newRef12.child("Activity Destination").setValue(destination);
+                    newRef.child("Activity Name").setValue(actN);
+                    newRef.child("Activity Hour").setValue(hourStr);
+                    newRef.child("Activity Minute").setValue(minuteStr);
+                    newRef.child("Activity Day").setValue(dayStr2);
+                    newRef.child("Activity Month").setValue(monthStr);
+                    newRef.child("Activity Year").setValue(yearStr);
+                    newRef.child("Activity Destination").setValue(destination);
                     numberOfActivity++;
 
                     //3.Lesson Activity
                     DatabaseReference newRef13 = myRef.child("Users").child(uid).child("activities").push();
-                    newRef13.child("Activity Name").setValue(actN);
-                    newRef13.child("Activity Hour").setValue(hourStr);
-                    newRef13.child("Activity Minute").setValue(minuteStr);
-                    newRef13.child("Activity Day").setValue(dayStr3);
-                    newRef13.child("Activity Month").setValue(monthStr);
-                    newRef13.child("Activity Year").setValue(yearStr);
-                    newRef13.child("Activity Destination").setValue(destination);
+                    newRef.child("Activity Name").setValue(actN);
+                    newRef.child("Activity Hour").setValue(hourStr);
+                    newRef.child("Activity Minute").setValue(minuteStr);
+                    newRef.child("Activity Day").setValue(dayStr3);
+                    newRef.child("Activity Month").setValue(monthStr);
+                    newRef.child("Activity Year").setValue(yearStr);
+                    newRef.child("Activity Destination").setValue(destination);
                     numberOfActivity++;
 
                     //4.Lesson Activity
                     DatabaseReference newRef14 = myRef.child("Users").child(uid).child("activities").push();
-                    newRef14.child("Activity Name").setValue(actN);
-                    newRef14.child("Activity Hour").setValue(hourStr);
-                    newRef14.child("Activity Minute").setValue(minuteStr);
-                    newRef14.child("Activity Day").setValue(dayStr4);
-                    newRef14.child("Activity Month").setValue(monthStr);
-                    newRef14.child("Activity Year").setValue(yearStr);
-                    newRef14.child("Activity Destination").setValue(destination);
+                    newRef.child("Activity Name").setValue(actN);
+                    newRef.child("Activity Hour").setValue(hourStr);
+                    newRef.child("Activity Minute").setValue(minuteStr);
+                    newRef.child("Activity Day").setValue(dayStr4);
+                    newRef.child("Activity Month").setValue(monthStr);
+                    newRef.child("Activity Year").setValue(yearStr);
+                    newRef.child("Activity Destination").setValue(destination);
                     numberOfActivity++;
 
                     attandanceCheck.setVisibility(View.VISIBLE);
-                    attandanceCheck.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(CreateAct.this, LessonSchedule.class);
-                            startActivity(intent);
-                        }
-                    });
-
                 }
                 if(activityType.equals("Exam")){
                     DatabaseReference newRef2 =
@@ -216,13 +206,6 @@ public class CreateAct extends AppCompatActivity {
 
                     preExamWarning.setVisibility(View.VISIBLE);
                     backArrow.setVisibility(View.VISIBLE);
-                    preExamWarning.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(CreateAct.this,RemindExam.class);
-                            startActivity(intent);
-                        }
-                    });
                 }
 
             }

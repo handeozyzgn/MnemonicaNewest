@@ -1,85 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
-    <ImageView
-        android:id="@+id/myImageView"
-        android:layout_width="wrap_content"
+
+    <Button
+        android:id="@+id/editAccount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/menu_back" />
+        android:text="Edit Your Account" />
+
+    <Button
+        android:id="@+id/dataTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test Data" />
+
+    <Button
+        android:id="@+id/addAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Activity" />
+
+    <Button
+        android:text="show my location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/location" />
+
+    <Button
+        android:text="show location of anywhere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/findAdressLocation" />
+
+    <Button
+        android:text="Find Distance Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/findDistTime" />
+
+    <Button
+        android:text="push notification "
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:id="@+id/pushNotification" />
+
+    <Button
+        android:text="show token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_show_token" />
+    <Button
+        android:id="@+id/addFriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Friend" />
 
     <Button
         android:id="@+id/showFriends"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show Friends"
-        android:layout_below="@+id/editAccount"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="117dp"
-        android:layout_alignRight="@+id/addAct"
-        android:layout_alignEnd="@+id/addAct" />
+        android:text="Show Friends" />
 
-    <Button
-        android:id="@+id/editAccount"
-        android:background="@drawable/home"
-        android:layout_width="88dp"
-        android:text="Edit Your Account"
-        android:layout_marginTop="37dp"
-        android:layout_height="88dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="77dp"
-        android:layout_marginEnd="77dp"
-        android:textSize="12sp"
-        android:textStyle="normal|bold"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle" />
-
-    <Button
-        android:id="@+id/addFriend"
-        android:text="Add Friend"
-        android:background="@drawable/hotel"
-        android:layout_below="@+id/showFriends"
-        android:layout_centerHorizontal="true"
-        android:layout_width="94dp"
-        android:layout_height="94dp" />
-
-    <Button
-        android:id="@+id/addAct"
-        android:text="Add Activity"
-        android:background="@drawable/cinema"
-        android:layout_height="68dp"
-        android:layout_width="78dp"
-        android:layout_alignTop="@+id/editAccount"
-        android:layout_toLeftOf="@+id/addFriend"
-        android:layout_toStartOf="@+id/addFriend"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
-
-    <Button
-        android:id="@+id/schedule"
-        android:text="schedule"
-        android:background="@drawable/school"
-        android:layout_width="88dp"
-        android:layout_height="98dp"
-        android:layout_alignBottom="@+id/viewAw"
-        android:layout_toLeftOf="@+id/addFriend"
-        android:layout_toStartOf="@+id/addFriend" />
-
-    <Button
-        android:id="@+id/viewAw"
-        android:text="point"
-        android:background="@drawable/castle"
-        android:layout_height="108dp"
-        android:layout_width="118dp"
-        android:layout_below="@+id/addFriend"
-        android:layout_toRightOf="@+id/addFriend"
-        android:layout_toEndOf="@+id/addFriend"
-        android:textAlignment="textStart"
-        android:fontFamily="sans-serif-medium" />
-
-
-</RelativeLayout>
+</LinearLayout>
