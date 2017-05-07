@@ -86,12 +86,22 @@
             android:name=".AddressLocation"
             android:label="AddresLocation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".AlarmManager"
-            android:label="AlarmManager"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
         <receiver android:name=".AlarmReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".EventReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".GPSReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".LessonReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -107,6 +117,17 @@
         <activity android:name=".AddFriend"/>
         <activity android:name=".ShowFriends"/>
         <activity android:name=".SendEvent"/>
+        <activity android:name=".EventPop"/>
+        <activity android:name=".Try"/>
+        <activity android:name=".LessonSchedule"/>
+        <activity android:name=".CheckLessonLoc"/>
+        <activity android:name=".RemindExam"/>
+        <activity android:name=".ExamCheck"/>
+        <activity android:name=".ActCurrentCheck"/>
+        <activity android:name=".ActCurrent"/>
+        <activity android:name=".ViewAwards"/>
+
+
         <service
             android:name=".GeocodeAddressIntentService"
             android:exported="false"/>

@@ -6,17 +6,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.example.Mnemonica.TimeBetweenLocations.MapsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.onesignal.OneSignal;
 
 import java.io.OutputStream;
@@ -32,8 +23,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static com.google.android.gms.plus.PlusOneDummyView.TAG;
 
 /**
  * Created by Bengu on 18.4.2017.
@@ -43,7 +32,7 @@ public class SendEvent extends Activity {
     Button scheduleBtn;
     Button editAccount;
     Button alarm;
-    Button dataTest;
+    Button hande;
     Button send;
     Button btnlocation, findAddressLocation, findDistTime, tryButton, pushNotification;
     private FirebaseDatabase myRef;
@@ -56,20 +45,37 @@ public class SendEvent extends Activity {
     String value;
     ArrayList<String> fList;
     String eventN;
+    String destination;
+    int hour;
+    String keyStr;
+    int minute;
+    int year;
+    int month;
+    int day;
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.send_event);
-        Intent intent = this.getIntent();
-        eventN = intent.getStringExtra("name");
+
+        Intent intent1 = this.getIntent();
+        destination = intent1.getStringExtra("dest");
+        eventN = intent1.getStringExtra("name");
+        hour = intent1.getIntExtra("hour",0);
+        minute = intent1.getIntExtra("minute",0);
+        month = intent1.getIntExtra("month",0);
+        year = intent1.getIntExtra("year",0);
+        day = intent1.getIntExtra("day",0);
 
         OneSignal.startInit(this).init();
         send = (Button) findViewById(R.id.send);
         // Call syncHashedEmail anywhere in your app if you have the user's email.
         // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
         // OneSignal.syncHashedEmail(userEmail);
+        hande = (Button) findViewById(R.id.hande);
+        hande.setVisibility(View.GONE);
 
         //////////////////Setting the tags for Current User./////////////////////////////////////////////////////////////
         mAuth = FirebaseAuth.getInstance();
@@ -123,9 +129,9 @@ public class SendEvent extends Activity {
 
                     //This is a Simple Logic to Send Notification different Device Programmatically....
                     if (SendEvent.LoggedIn_User_Email.equals("bengu.akbostanci06@gmail.com")) {
-                            send_email = mail;
+                        send_email = mail;
 
-                       // send_email = "handeozyazgan@gmail.com";
+                        // send_email = "handeozyazgan@gmail.com";
                     } else {
                         send_email = "bengu.akbostanci06@gmail.com";
                     }
@@ -152,7 +158,6 @@ public class SendEvent extends Activity {
                                 + "\"contents\": {\"en\": \""+eventN+"\"}"
                                 + "}";
 
-
                         System.out.println("strJsonBody:\n" + strJsonBody);
 
                         byte[] sendBytes = strJsonBody.getBytes("UTF-8");
@@ -163,16 +168,21 @@ public class SendEvent extends Activity {
 
                         int httpResponse = con.getResponseCode();
                         System.out.println("httpResponse: " + httpResponse);
-                       // httpResponse >= HttpURLConnection.HTTP_OK
-                          //      && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST)
+                        // httpResponse >= HttpURLConnection.HTTP_OK
+                        //      && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST)
 
                         if (httpResponse >= HttpURLConnection.HTTP_OK
                                 && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
-                            dataRef.child(userID).child("activities").child("Event").setValue(eventN);
+                            hande.setVisibility(View.VISIBLE);
+                            //Intent intent = new Intent(SendEvent.this,Menu.class);
                             Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
                             jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
                             scanner.close();
-                        } else{
+                            //intent.putExtra("eventN",eventN);
+                            //sendBroadcast(intent);
+                        }
+
+                        else{
                             Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
                             jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
                             scanner.close();

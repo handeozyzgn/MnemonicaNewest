@@ -60,5 +60,6 @@ dependencies {
     // play-services-analytics is only needed when using 8.1.0 or older.
     // compile 'com.google.android.gms:play-services-analytics:+'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

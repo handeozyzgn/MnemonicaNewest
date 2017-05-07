@@ -13,6 +13,8 @@ public class Act {
     private int month;
     private int date;
     private int year;
+    private  int absance;
+    private int attendanceLimit;
     private String key;
     private String destination;
 
@@ -48,6 +50,15 @@ public class Act {
         return year;
     }
 
+    public int getAbsance() {
+        return absance;
+    }
+    public String getKey() {
+        return key;
+    }
+
+    public int getAttendanceLimit() {return attendanceLimit;}
+
     public void setHour(int hour) {
         this.hour = hour;
     }
@@ -72,13 +83,18 @@ public class Act {
         this.year = year;
     }
 
-    public String getKey() {
-        return key;
-    }
-
     public void setKey(String key) {
         this.key = key;
     }
+
+    public void setAbsance(int absance) {
+        this.absance = absance;
+    }
+
+    public void setAttendanceLimit(int attendanceLimit) {
+        this.attendanceLimit = attendanceLimit;
+    }
+
 
     public static Comparator<Act> ActHourComp = new Comparator<Act>() {
 
@@ -132,4 +148,5 @@ public class Act {
 	   /*For descending order*/
             //rollno2-rollno1;
         }};
+
 }
