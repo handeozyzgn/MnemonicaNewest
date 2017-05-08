@@ -107,6 +107,12 @@
         <activity android:name=".AddFriend"/>
         <activity android:name=".ShowFriends"/>
         <activity android:name=".SendEvent"/>
+        <activity android:name=".ViewAwards"/>
+        <activity android:name=".ActCurrent"/>
+        <activity android:name=".ActCurrentCheck"/>
+        <activity android:name=".ExamCheck"/>
+        <activity android:name=".RemindExam"/>
+
         <service
             android:name=".GeocodeAddressIntentService"
             android:exported="false"/>

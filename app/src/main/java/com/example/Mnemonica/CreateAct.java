@@ -143,6 +143,13 @@ public class CreateAct extends AppCompatActivity {
                 addActivity.setVisibility(View.GONE);
                 backArrow.setVisibility(View.VISIBLE);
 
+                strtAlarm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CreateAct.this, AddActToSchedule.class);
+                        startActivity(intent);
+                    }
+                });
 
                 myRef.child("Users").child(uid).child("Number of Activities").setValue(numberOfActivity);
                         //Adding location information of activity to database
@@ -192,6 +199,13 @@ public class CreateAct extends AppCompatActivity {
                     numberOfActivity++;
 
                     attandanceCheck.setVisibility(View.VISIBLE);
+                    attandanceCheck.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(CreateAct.this, LessonSchedule.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
                 if(activityType.equals("Exam")){
                     DatabaseReference newRef2 =
@@ -206,6 +220,14 @@ public class CreateAct extends AppCompatActivity {
 
                     preExamWarning.setVisibility(View.VISIBLE);
                     backArrow.setVisibility(View.VISIBLE);
+
+                    preExamWarning.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(CreateAct.this,RemindExam.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
 
             }
